@@ -26,6 +26,7 @@ void compute_bit_length(ap_uint<SYMBOL_BITS> parent[INPUT_SYMBOL_SIZE - 1],
 		for(int i = num_symbols-3; i>=0; i--)
 		{
 #pragma HLS pipeline II=3
+#pragma HLS LOOP_TRIPCOUNT min=50 max=255 avg=120
 			ap_uint<TREE_DEPTH_BITS> length = child_depth[parent[i]] + 1;
 			child_depth[i] = length;
 			 if(left[i] != INTERNAL_NODE || right[i] != INTERNAL_NODE)
